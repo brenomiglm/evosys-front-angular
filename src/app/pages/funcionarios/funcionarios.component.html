@@ -1,0 +1,50 @@
+
+<div class="row align-items-center mb-3">
+    <div class="col-md-6">
+        <h2>Funcionários</h2>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a href="/funcionarios/cadastrar" class="btn btn-primary">
+            <i class="bi bi-person-plus"></i>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="w-75"> 
+        <input type="text" class="form-control" placeholder="Buscar funcionário por nome" (input)="search($event)">
+    </div>
+</div>
+
+<div *ngIf="!funcionarios || funcionarios.length === 0" class="alert alert-warning mt-3">
+    Nenhum funcionário encontrado!
+</div>
+
+<table class="table table-hover mt-3" *ngIf="funcionarios && funcionarios.length > 0">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>RG</th>
+            <th>Departamento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let funcionario of funcionarios">
+        <tr>
+            <td>{{ funcionario.id }}</td>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.rg }}</td>
+            <td>{{ funcionario.departamento.nome }}</td>
+            <td>
+                <a href="/funcionarios/editar/{{funcionario.id}}" class="btn btn-secondary me-1">
+                    <i class="bi bi-pencil-square"></i> <!-- Ícone para 'Modificar' -->
+                </a>
+       
+                <button (click)="deletar(funcionario.id ?? 0)" class="btn btn-danger me-1">
+                    <i class="bi bi-trash"></i> <!-- Ícone para 'Deletar' -->
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

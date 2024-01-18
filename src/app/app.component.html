@@ -1,0 +1,38 @@
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-md-block bg-light sidebar vh-100">
+            <div class="sidebar-sticky pt-3">
+                <!-- Espaço para o logotipo -->
+                <div class="sidebar-header">
+                    <img src="https://static.wixstatic.com/media/ee8675_60bad0a328b14a66aaed63b0ff49b9ca~mv2.png/v1/fill/w_205,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo%20evo%201.png" alt="Logotipo" class="img-fluid">
+                </div>
+
+                <!-- Links de navegação -->
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" routerLink="/">
+                            Departamentos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/funcionarios">
+                            Funcionários
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+<main role="main" class="col-md-10 ml-sm-auto px-0" style="margin-left: 300px;">
+        <!-- Container com cor de fundo -->
+        <div class="bg-light">
+            <!-- Container com largura fixa para o conteúdo -->
+            <div class="content-container">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </main>
+    </div>
+</div>

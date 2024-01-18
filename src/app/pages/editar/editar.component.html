@@ -1,0 +1,6 @@
+<div *ngIf="departamento">
+    <app-departamento-form [btnAcao]="btnAcao"
+                           [btnTitulo]="btnTitulo" 
+                           [dadosDepartamento]="departamento" 
+                           (onSubmit)="editarDepartamento($event)"></app-departamento-form>
+</div>

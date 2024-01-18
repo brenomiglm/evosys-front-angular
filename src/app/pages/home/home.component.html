@@ -1,0 +1,52 @@
+<div class="row align-items-center mb-3">
+    <div class="col-md-6">
+        <h2>Departamentos</h2>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a href="/cadastro" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="w-75">
+        <input type="text" class="form-control" placeholder="Buscar departamento por nome" (input)="search($event)">
+    </div>
+</div>
+
+<div *ngIf="!departamentos || departamentos.length === 0" class="alert alert-warning mt-3">
+    Nenhum departamento foi encontrado!
+</div>
+
+
+<table class="table table-hover mt-3" *ngIf="departamentos && departamentos.length > 0">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Sigla</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let departamento of departamentos">
+        <tr>
+            <td>{{ departamento.id }}</td>
+            <td>{{ departamento.nome }}</td>
+            <td>{{ departamento.sigla }}</td>
+            <td>
+                <a [routerLink]="['/funcionarios']" [queryParams]="{ departamentoId: departamento.id}"
+                    class="btn btn-info me-1">
+                    <i class="bi bi-people"></i> <!-- Ícone para 'Ver Funcionários' -->
+                </a>
+                <a href="/editar/{{departamento.id}}" class="btn btn-secondary me-1">
+                    <i class="bi bi-pencil-square"></i> <!-- Ícone para 'Modificar' -->
+                </a>
+          
+                <button (click)="deletar(departamento.id ?? 0)" class="btn btn-danger me-1">
+                    <i class="bi bi-trash"></i> <!-- Ícone para 'Deletar' -->
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

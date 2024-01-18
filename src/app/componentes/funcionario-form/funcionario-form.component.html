@@ -1,0 +1,38 @@
+<h1>{{btnTitulo}}</h1>
+
+<form [formGroup]="FuncionarioForm" (ngSubmit)="submit()" #formDit="ngForm" class="mt-3">
+    <input type="hidden" formControlName="id">
+
+    <div class="mb-3">
+        <label for="nomeFuncionario" class="form-label">Nome:</label>
+        <input type="text" class="form-control" id="nomeFuncionario" formControlName="nome" placeholder="Insira o nome!"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label for="rgFuncionario" class="form-label">RG:</label>
+        <input type="text" class="form-control" id="rgFuncionario" formControlName="rg" placeholder="Insira o RG!"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label for="fotoFuncionario" class="form-label">Foto:</label>
+        <input type="file" class="form-control" id="fotoFuncionario" accept="image/png, image/gif, image/jpeg" (change)="onFileSelected($event)" />
+    </div>
+
+    <div *ngIf="dadosFuncionario?.id" class="mb-3">
+        <img [src]="gerarLinkFoto(dadosFuncionario?.id)" style="max-width: 235px;" class="img-thumbnail" />
+    </div>
+
+    <div class="mb-3">
+        <label for="departamento" class="form-label">Departamento:</label>
+        <select class="form-select" id="departamento" formControlName="departamentoId" required>
+            <option *ngFor="let item of Departamentos" [value]="item.id">{{item.nome}}</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-success me-2" [disabled]="!FuncionarioForm.valid">{{btnAcao}}</button>
+        <a href="/funcionarios" class="btn btn-secondary">Voltar</a>
+    </div>
+</form>
